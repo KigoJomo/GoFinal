@@ -3,17 +3,36 @@ from .models import Member, Product, Appointment, Inquiry
 
 # Register your models here.
 
+
 class MemberAdmin(admin.ModelAdmin):
-  list_display = ("fullName", "gender",)
+    list_display = (
+        "fullName",
+        "gender",
+    )
+
 
 class ProductAdmin(admin.ModelAdmin):
-  list_display = ("name", "quantity",)
+    list_display = (
+        "name",
+        "quantity",
+    )
+
 
 class AppointmentAdmin(admin.ModelAdmin):
-  list_display = ("name", "doctor", "dateTime",)
+    list_display = (
+        "name",
+        "doctor",
+        "date",
+    )
+
 
 class InquiryAdmin(admin.ModelAdmin):
-  list_display = ("name", "email", "subject",)
+    list_display = (
+        "name",
+        "email",
+        "subject",
+    )
+
 
 admin.site.register(Member, MemberAdmin)
 admin.site.register(Product, ProductAdmin)

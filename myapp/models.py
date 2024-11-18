@@ -24,7 +24,7 @@ class Appointment(models.Model):
   name = models.CharField(max_length=100)
   email = models.EmailField()
   phone = models.CharField(max_length=50)
-  dateTime = models.DateTimeField()
+  date = models.DateTimeField()
   department = models.CharField(max_length=50)
   doctor = models.CharField(max_length=100)
   message = models.TextField()
