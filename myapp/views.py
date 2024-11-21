@@ -1,11 +1,19 @@
 from django.shortcuts import render, redirect
-from .models import Appointment, Inquiry
+from .models import Appointment, Inquiry, User
 from .forms import AppointmentForm
 
 
 # Create your views here.
 def index(request):
-    return render(request, "index.html")
+    if request.method == 'POST':
+        if User.objects.filter(
+            username=request.POST["username"], password=request.POST["password"]
+        ).exists():
+            return render(request, "index.html")
+        else:
+            return render(request, "login.html")
+    else:
+        return render(request, "login.html")
 
 
 def service(request):
@@ -94,3 +102,21 @@ def update(request, id):
         return redirect("/show")
     else:
         return render(request, "edit.html", {"appointment": updateinfo})
+
+
+def register(request):
+    if request.method == "POST":
+        new_user = User(
+            name = request.POST["name"],
+            username = request.POST["username"],
+            password = request.POST["password"],
+        )
+
+        new_user.save()
+        return redirect("/login")
+
+    else:
+        return render(request, "register.html")
+
+def login(request):
+    return render(request, "login.html")
